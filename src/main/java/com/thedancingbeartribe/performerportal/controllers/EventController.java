@@ -1,10 +1,13 @@
 package com.thedancingbeartribe.performerportal.controllers;
 
+import com.thedancingbeartribe.performerportal.modles.Event;
 import org.apache.tomcat.util.digester.ArrayStack;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +16,26 @@ import java.util.List;
 @RequestMapping("events")
 public class EventController {
 
+    private static List<Event> events = new ArrayList<>();
+
     @GetMapping
     public String displayEvents(Model model){
-        List<String> events = new ArrayList<>();
-        events.add("Pyro");
-        events.add("Backwoods");
-        events.add("Dancefestopia");
-        events.add("Witches Night Out");
+        model.addAttribute("title","All Events");
         model.addAttribute("events", events);
         return "events/index";
+    }
+
+    //lives at /events/create
+    @GetMapping("create")
+    public String eventFrom(Model model){
+        model.addAttribute("title", "Create Event");
+        return "events/create";
+    }
+    //lives at /events/create  handles post request
+    @PostMapping("create")
+    public String processEventForm(@RequestParam String eventName) {
+        events.add(new Event(eventName));
+        return "redirect:"; //tells browser to redirect to new path root path for contoller
     }
 
 }
