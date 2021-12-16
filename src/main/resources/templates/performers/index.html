@@ -8,9 +8,11 @@
 
 <h1>All Performers</h1>
 
+<p th:unless="${performers} and ${performers.size()}"> no performers </p>
+
 <ul>
   <th:block th:each="performer : ${performers}">
-    <li th:text="${performer}"></li>
+    <li th:text="${performer.name}"></li>
   </th:block>
 </ul>
 

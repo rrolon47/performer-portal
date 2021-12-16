@@ -1,5 +1,6 @@
 package com.thedancingbeartribe.performerportal.controllers;
 
+import com.thedancingbeartribe.performerportal.modles.Performer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +13,11 @@ import java.util.List;
 @RequestMapping("performers")
 public class PerformerController {
 
+    private static List<Performer> performers = new ArrayList<>();
+
     @GetMapping
     public String displayPerformers(Model model) {
-        List<String> performers = new ArrayList<>();
-        performers.add("Lana");
-        performers.add("Whitney");
-        performers.add("Victoria");
-        performers.add("Nicole");
+        model.addAttribute("title","All Performers");
         model.addAttribute("performers", performers);
         return "performers/index";
     }
