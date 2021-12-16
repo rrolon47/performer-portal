@@ -25,14 +25,14 @@ public class EventController {
         return "events/index";
     }
 
-    //lives at /events/create
-    @GetMapping("create")
+    //lives at /events/booking
+    @GetMapping("booking")
     public String eventFrom(Model model){
-        model.addAttribute("title", "Create Event");
-        return "events/create";
+        model.addAttribute("title", "Create Event Booking");
+        return "events/booking";
     }
-    //lives at /events/create  handles post request
-    @PostMapping("create")
+    //lives at /events/booking  handles post request
+    @PostMapping("booking")
     public String processEventForm(@RequestParam String eventName) {
         events.add(new Event(eventName));
         return "redirect:"; //tells browser to redirect to new path root path for contoller
