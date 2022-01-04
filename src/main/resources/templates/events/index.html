@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container">
+
 <nav th:replace="fragments :: navigation"></nav>
+
 <h1 th:text="${title}"></h1>
 
 <p th:unless="${events} and ${events.size()}"> no events </p>
 <!--/* if ture will not display is there a non null variable called events and there are things in the event list. */-->
-<ul>
-  <th:block th:each="event : ${events}">
-    <li th:text="${event.name}"></li>
-  </th:block>
-</ul>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tr th:each="event : ${events}">
+    <td th:text="${event.id}"></td>
+    <td th:text="${event.name}"></td>
+</table>
 
 </body>
 </html>

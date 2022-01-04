@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container">
 <nav th:replace="fragments :: navigation"></nav>
 <h1>All Performers</h1>
 
 <p th:unless="${performers} and ${performers.size()}"> no performers </p>
 
-<ul>
-  <th:block th:each="performer : ${performers}">
-    <li th:text="${performer.name}"></li>
-  </th:block>
-</ul>
 
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+  </tr>
+  </thead>
+  <tr th:each="performer : ${performers}">
+    <td th:text="${performer.id}"></td>
+    <td th:text="${performer.name}"></td>
+</table>
 </body>
 </html>
